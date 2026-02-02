@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Manvi ❤️</title>
+
+<style>
+/* ===== BODY BACKGROUND (PHOTO) ===== */
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: url("11223344.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* ===== HEARTS & FLOWERS FLOATING ===== */
+.floating {
+    position: absolute;
+    font-size: 22px;
+    animation: float 8s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+/* ===== MAIN CARD ===== */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.25);
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    width: 90%;
+    max-width: 420px;
+    backdrop-filter: blur(6px);
+}
+
+/* ===== BUTTONS ===== */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.yes {
+    background: white;
+    color: #ff2e63;
+}
+
+.no {
+    background: #ff2e63;
+    color: white;
+}
+
+/* ===== POPUPS ===== */
+.popup {
+    position: absolute;
+    background: white;
+    color: #333;
+    padding: 12px 18px;
+    border-radius: 15px;
+    font-size: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+/* ===== FIREWORKS ===== */
+.firework {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: gold;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(6); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="container" id="main">
+    <h1>I love you Manvi ❤️</h1>
+    <p>Will you be my forever & ever? 💍</p>
+    <button class="yes" onclick="yesClicked()">YES 💖</button>
+    <button class="no" onclick="startNoSequence()">NO 😏</button>
+</div>
+
+<script>
+/* ===== FLOATING HEARTS & FLOWERS ===== */
+const icons = ['❤️','🌸','🌹','💐'];
+setInterval(() => {
+    const el = document.createElement('div');
+    el.className = 'floating';
+    el.innerText = icons[Math.floor(Math.random() * icons.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = 5 + Math.random() * 5 + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 10000);
+}, 400);
+
+/* ===== NO BUTTON POPUPS ===== */
+const popupsText = [
+    "Wait... are you sure? 🤔",
+    "No 😶",
+    "Yes 😳",
+    "Really? 😲",
+    "Try again! 😜",
+    "You sure? 😏",
+    "Waah! Nice try! 😂",
+    "No escape! 😈",
+    "Nice try 😉",
+    "You can't escape love 💘",
+    "Still no? Really? 😵"
+];
+
+let popupIndex = 0;
+
+function randomPosition(el) {
+    el.style.top = Math.random() * (window.innerHeight - 100) + "px";
+    el.style.left = Math.random() * (window.innerWidth - 200) + "px";
+}
+
+function startNoSequence() {
+    showNextPopup();
+}
+
+function showNextPopup() {
+    if (popupIndex >= popupsText.length) {
+        document.querySelector('.no').style.display = 'none';
+        return;
+    }
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.innerText = popupsText[popupIndex];
+    randomPosition(popup);
+    popup.onclick = () => {
+        popup.remove();
+        popupIndex++;
+        showNextPopup();
+    };
+    document.body.appendChild(popup);
+}
+
+/* ===== FIREWORK EFFECT ===== */
+function fireworks() {
+    for (let i = 0; i < 25; i++) {
+        const fw = document.createElement('div');
+        fw.className = 'firework';
+        fw.style.left = Math.random() * 100 + 'vw';
+        fw.style.top = Math.random() * 100 + 'vh';
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1000);
+    }
+}
+
+/* ===== YES CLICKED ===== */
+function yesClicked() {
+    fireworks();
+    document.getElementById('main').innerHTML = `
+        <h1>I love you so much ❤️❤️</h1>
+        <p>You are my everything 🌹</p>
+        <p>Forever starts with us 💑</p>
+
+        <!-- ADD YOUR PHOTO BELOW -->
+        <img src="manvi.jpg"
+             style="width:100%;border-radius:18px;margin-top:15px;">
+    `;
+}
+</script>
+
+</body>
+</html>
